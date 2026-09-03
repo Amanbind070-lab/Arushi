@@ -63,6 +63,13 @@ android {
   }
 }
 
+// Inject AI Studio environment variables into .env so the Secrets plugin picks them up
+val envFile = rootProject.file(".env")
+val sysGeminiKey = System.getenv("GEMINI_API_KEY")
+if (!sysGeminiKey.isNullOrBlank()) {
+    envFile.writeText("GEMINI_API_KEY=$sysGeminiKey\n")
+}
+
 // Configure the Secrets Gradle Plugin to use .env and .env.example files
 // to match the convention used in Web projects.
 secrets {
