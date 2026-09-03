@@ -58,9 +58,9 @@ class GeminiLiveClient(
         .build()
 
     fun connect(apiKey: String) {
-        if (apiKey.isBlank() || apiKey == "MY_GEMINI_API_KEY") {
-            Log.e(TAG, "Cannot connect: Gemini API key is missing or placeholder")
-            _connectionState.value = LiveConnectionState.Error("Gemini API key is not configured in Secrets panel")
+        if (apiKey.isBlank()) {
+            Log.e(TAG, "Cannot connect: Gemini API key is unavailable")
+            _connectionState.value = LiveConnectionState.Error("Secret unavailable: GEMINI_API_KEY could not be read from the environment.")
             return
         }
 

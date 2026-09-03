@@ -145,10 +145,10 @@ class ArushiViewModel(application: Application) : AndroidViewModel(application) 
     fun startSession() {
         Log.d(TAG, "Starting Arushi Live Session")
         val apiKey = getEffectiveApiKey()
-        if (apiKey.isBlank() || apiKey == "MY_GEMINI_API_KEY") {
+        if (apiKey.isBlank()) {
             _uiState.value = _uiState.value.copy(
                 status = AssistantStatus.ERROR,
-                errorMessage = "Gemini API key is missing. Please configure it in AI Studio Secrets panel."
+                errorMessage = "Secret unavailable: GEMINI_API_KEY could not be read from the environment."
             )
             return
         }
@@ -268,10 +268,10 @@ class ArushiViewModel(application: Application) : AndroidViewModel(application) 
     fun sendCommand(text: String) {
         if (!_uiState.value.isLiveConnected) {
             val apiKey = getEffectiveApiKey()
-            if (apiKey.isBlank() || apiKey == "MY_GEMINI_API_KEY") {
+            if (apiKey.isBlank()) {
                 _uiState.value = _uiState.value.copy(
                     status = AssistantStatus.ERROR,
-                    errorMessage = "Gemini API key is not configured in Secrets panel"
+                    errorMessage = "Secret unavailable: GEMINI_API_KEY could not be read from the environment."
                 )
                 return
             }
