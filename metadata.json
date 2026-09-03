@@ -1,0 +1,6 @@
+{
+  "name": "Arushi AI",
+  "description": "Real-time voice AI assistant with native audio, multi-language support, and device actions",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
